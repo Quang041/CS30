@@ -12,7 +12,6 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 public class TicTacToe {
 	
-	
     private JFrame frame;
     private boolean turn = true;
     private TTT game = new TTT();

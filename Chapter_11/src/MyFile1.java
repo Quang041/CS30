@@ -12,7 +12,7 @@ public class MyFile1 {
 			System.out.println("The file is exist");
 		}
 		else {
-			System.out.println("The file is not exist");
+			System.out.println("The file is not exist");//
 		}
 	}
 }

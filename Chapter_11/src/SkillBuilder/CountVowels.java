@@ -8,7 +8,6 @@ in the text file. The application should prompt the user for the file name.
 Author: Quang Nguyen
 School: CHHS
 Course: Computer Programming 30
- 
 
 */
 package SkillBuilder;

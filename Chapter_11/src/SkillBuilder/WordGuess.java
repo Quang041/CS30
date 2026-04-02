@@ -10,7 +10,6 @@ fil
 Author: Quang Nguyen
 School: CHHS
 Course: Computer Programming 30
- 
 
 */
 package SkillBuilder;

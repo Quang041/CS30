@@ -43,6 +43,7 @@ public class CountVowels {
 				}
 			}      
 			System.out.println("Your file has: " + count + " vowel(s).");
+			System.out.println(count);
 		} catch (IOException e) {
 			System.out.println("Problem reading file.");
 			System.out.println("IOException: " + e.getMessage());

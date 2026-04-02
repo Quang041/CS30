@@ -5,7 +5,7 @@ Program: WordGuess.java          Last Date of this Revision: April 2, 2026
 Purpose: Modify the WordGuess case study from Chapter 5 to use a word from a file as the secret word.
 The file should contain a list of words, with one word per line. The WordGuess application should 
 determine which word to use, by generating a random number that corresponds to one of the word in the
-file.
+fil
 
 Author: Quang Nguyen
 School: CHHS

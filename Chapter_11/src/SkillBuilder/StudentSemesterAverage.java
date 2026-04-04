@@ -164,29 +164,34 @@ public class StudentSemesterAverage {
 		display.setFont(new Font("Monospaced", Font.BOLD, 10));
 		display.setBounds(10, 305, 466, 105);
 		frame.getContentPane().add(display);
-		
+
+
+		/*
+		How the main project works
+		*/
 		JButton save = new JButton("Save to File");
 		save.setFont(new Font("Tahoma", Font.BOLD, 16));
 		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
+				/*Get data and then convert to double data type*/
 				double grade1 = Double.parseDouble(g1.getText());
 				double grade2 = Double.parseDouble(g2.getText());
 				double grade3 = Double.parseDouble(g3.getText());
 				double grade4 = Double.parseDouble(g4.getText());
-				double average_ = (grade1+grade2+grade3+grade4)/4;
+				double average_ = (grade1+grade2+grade3+grade4)/4; /*All 4 grades coverted double used to calculate the average*/
 				
-				String average_real = Double.toString(average_);
+				String average_real = Double.toString(average_); /*Convert the double back to string, so that the average can be shown*/
 				average.setVisible(true);
-				average.setText(average_real);
+				average.setText(average_real); //==> The average//
 				
-				FileWriter out;
-				BufferedWriter writeFile;
+				FileWriter out;  //Declare new FileWriter//
+				BufferedWriter writeFile; //Declare new BufferedWriter//
 				try {
 				out = new FileWriter("DataFile", true);
 				writeFile = new BufferedWriter(out);
 				
-				
+				//Save all the data to DataFile, after all the data are filled and average is calculated//
 				writeFile.write("Student: " + Student.getText() + "|");
 				writeFile.write("Grade: " + Grade.getText() + "|");
 				writeFile.write("Semester: " + Semester.getText() + "|");
@@ -198,12 +203,12 @@ public class StudentSemesterAverage {
 				out.close();
 				
 				
-				JOptionPane.showMessageDialog(null, "Save Data Successfully!");
+				JOptionPane.showMessageDialog(null, "Save Data Successfully!"); //The pop-up screen, notify the users that all the data are saved successfully
 				
 				} catch (IOException ex) {
 					System.out.println("Problem writing to file");
 					System.out.println("IOException: " + ex.getMessage());
-				}
+				} //Catch any error, in case tha data are not available to read and move to the new file//
 				
 			}
 		});
@@ -224,24 +229,27 @@ public class StudentSemesterAverage {
 				g4.setText("");
 				average.setText("");
 				average.setVisible(false);
+				//CLear all the written information//
+				//The idea is: Allow new users to put in theit information without taking time to detele previous information//
 				
 				try {
-				FileReader in = new FileReader("DataFile");
-				BufferedReader buffer = new BufferedReader(in);
+				FileReader in = new FileReader("DataFile");  //Declare new FileReader//
+				BufferedReader buffer = new BufferedReader(in);  //Declare new BufferedReader//
 				
-				String line;
-				String output = "";
+				String line; //Declare a string variable//
+							 //This will be used to compare information in DataFile file//
+				String output = ""; //Declare this string for output//
 				
-				while ((line = buffer.readLine()) != null) {
+				while ((line = buffer.readLine()) != null) {  //this "line" variable, will contain data from DataFile. The condition is, if that line is not empty, the ouput will be updated with that data//
 					output = output + line + "\n";
 				}
-				display.setVisible(true);
-				display.setText(output);
+				display.setVisible(true); //Set the display to true, so that the users can see it//
+				display.setText(output);  //Set the data out, present the information as aksed//
 				
 				} catch (IOException ex) {
 					System.out.println("Cannot access to the file.");
 					System.out.println("IOException: " + ex.getMessage());
-				}
+				} //Catch any error that information can be accessed//
 			}
 		});
 		view.setBounds(248, 421, 204, 31);

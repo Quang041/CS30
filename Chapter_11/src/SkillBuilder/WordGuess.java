@@ -33,44 +33,45 @@ public class WordGuess {
 		"the first one.\n" +
 		"* Just guess the word I give you.\n" +
 		"P/S: It's not that hard, trust.\n" +
-		"--------------------------------------\n");
+		"--------------------------------------\n");  //Introduce the user to the game//
 		
 		
-		File fileText = new File("../Chapter_11/src/SkillBuilder/words");
-		List <String> words = new ArrayList<>();
+		File fileText = new File("../Chapter_11/src/SkillBuilder/words");  //Access to the file of words I created//
+		List <String> words = new ArrayList<>();  //Make a list for words from the words file//
 
 		/**Determine how many lines in the file.
 		 * Use for generate a number, which is later use for determine the word.
 		 */
 		try (BufferedReader buffer = new BufferedReader(new FileReader(fileText))) {
-			String line;
-			while ((line = buffer.readLine()) != null) {
-				if (!line.trim().isEmpty()) {
-					words.add(line.trim()); 
+			String line; //Will be updated constantly to compare//
+			while ((line = buffer.readLine()) != null) { //If the word ON THAT LINE is not empty, then the loop starts//
+				if (!line.trim().isEmpty()) { //Trim all the space so that the word only has |APPLE| not |APPLE |//
+					words.add(line.trim());  //Add to the list//
 				}
 			}
 		} catch (IOException e) {
 			System.out.println("Problem reading file.");
 			System.out.println("IOException: " + e.getMessage());
-		}
+		} //Catch the error any time there is a error in reading that file//
 		
 		/** 
 		 *Generate a random to choose the word later on.
 		 */
 		Random random = new Random();
-		int chosen = random.nextInt(words.size());
+		int chosen = random.nextInt(words.size()); //Create a random number depends on how many words available in the file//
+												   //Why words.size()? Because the words file can be edited and updated to more than 34 words. so that by this way, the  application can flexibly changed//
 		
 		/**
 		 *Choose the word
 		 */
-		String word = words.get(chosen);
+		String word = words.get(chosen); //By using the word and the number created, if number is the same as the line//
 		
 		
-		char[] chosen_word = word.toCharArray();
-		char[] keys = new char[word.length()];
+		char[] chosen_word = word.toCharArray(); //Convert the chosen word to the array of chars//
+		char[] keys = new char[word.length()];  //Key variable = what the user will put in. Word length always = 5//
 		
 		for (int i = 0; i < word.length(); i++) {
-			keys[i] = '-';
+			keys[i] = '-'; //Before the users play the game, 5 dashes are shown//
 			
 		}
 		System.out.println(keys);
@@ -79,37 +80,34 @@ public class WordGuess {
 		String input = "";
 		
 		do {
-			int count = 0;
-			System.out.print("Gimme your guess: ");
-			input = userinput.next().toUpperCase();
+			System.out.print("Gimme your guess: "); //Take the user guess//
+			input = userinput.next().toUpperCase(); //Upcase the word, so that the comparasion can work easier//
 			
-			if (input.equals("!")) {
+			if (input.equals("!")) { //When user choose this, allows user to give their answer//
 				System.out.print("Your decision is: ");
-				String guess = userinput.next().toUpperCase();
+				String guess = userinput.next().toUpperCase(); //Compare//
 				
-				if (guess.equals(word)) {
+				if (guess.equals(word)) { //If input = word, then the user win//
 					System.out.println("Congratulations");
-					System.out.print(count + " attempt(s).");
 				}
-				else if (!guess.equals(word)) {
+				else if (!guess.equals(word)) { //If input is not = word, then the user lose//
 					System.out.println("Too bad, you lose");
 					System.out.println("The word is: " + word);
-					System.out.print(count + " attempt(s).");
 				}
 			}
-			else if (!(input.equals("!"))) {
-				for (int i = 0; i < chosen_word.length; i++) {
-					if (input.charAt(0) == chosen_word[i]) {
+			else if (!(input.equals("!"))) { //If the user decides not to guess to word, so that the computer understands that user just want to guess the letter inside the word//
+				for (int i = 0; i < chosen_word.length; i++) { //The for loop will run all over every chars in the word//
+					if (input.charAt(0) == chosen_word[i]) { //If the user's input = any letter in the array. Then update the - from ealier to that letter//
 						keys[i] = input.charAt(0);
 					}
-					else if (input.charAt(0) != chosen_word[i]) {
+					else if (input.charAt(0) != chosen_word[i]) { //If the user's input is not = any letter in the array. Then the application does nothing//
 						System.out.print("");
 					}
 				}
-				System.out.println(keys);
+				System.out.println(keys); //Shown the updated version//
 			}
 			
-		} while (!input.equals("!"));
+		} while (!input.equals("!")); //Notify the application when the user hits !, stop the game//
 	}
 }
 /* Screen Dump
